@@ -1,8 +1,9 @@
-import Image from "next/image";
-import SearchIcon from "@mui/icons-material/Search";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import CategoryIcon from "@mui/icons-material/Category";
-import LandslideIcon from "@mui/icons-material/Landslide";
+import Image from 'next/image';
+import SearchIcon from '@mui/icons-material/Search';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import CategoryIcon from '@mui/icons-material/Category';
+import LandslideIcon from '@mui/icons-material/Landslide';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 export default function Home() {
   return (
@@ -19,10 +20,11 @@ function SideBar() {
 
 function ContentArea() {
   return (
-    <div className="h-screen w-full bg-slate-100 border p-3">
+    <div className=" w-full bg-slate-100 border p-3">
       <TopBar />
       <StatsBar />
       <AllCategories />
+      <FavoriteComponents />
     </div>
   );
 
@@ -105,16 +107,19 @@ function ContentArea() {
 
   function AllCategories() {
     return (
-      <div className=" bg-white  w-full p-8 rounded-lg mt-4">
+      <div className=" bg-white  w-full p-8 rounded-lg mt-4 border">
         <span className="text-lg flex gap-2 justify-between items-center">
-          <div className="">
-            <span className="font-bold">All Categories</span>
+          <div className="flex gap-4 items-center">
+            <span className="font-bold text-lg">All Categories</span>
+            <span className="text-[14px] text-pink-600 cursor-pointer">
+              More
+            </span>
           </div>
           <button className="bg-pink-500 text-white text-[12px] px-2 py-[2px] rounded-md">
             + New Category
           </button>
         </span>
-        <div className="flex flex-wrap gap-4 mt-7 ">
+        <div className="flex flex-wrap gap-4 mt-7">
           <SingleCategory />
           <SingleCategory />
           <SingleCategory />
@@ -141,5 +146,26 @@ function ContentArea() {
         </div>
       );
     }
+  }
+
+  function FavoriteComponents() {
+    return (
+      <div className="bg-white  w-full p-8 rounded-lg mt-4 border">
+        <div className="flex justify-between">
+          <span className="font-bold text-lg">Favorite Components</span>
+          <button className="bg-pink-500 text-white text-[12px] p-2 px-3 rounded-md">
+            View All
+          </button>
+        </div>
+
+        {/* Headers */}
+        <div className="grid grid-cols-4 mt-6 text-sm items-center text-slate-400">
+          <span className="border text-center">Component Name</span>
+          <span className="text-center">Created At</span>
+          <span className="text-center">Category</span>
+          <span className="text-center">Actions</span>
+        </div>
+      </div>
+    );
   }
 }
