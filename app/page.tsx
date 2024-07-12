@@ -1,9 +1,14 @@
-import Image from 'next/image';
-import SearchIcon from '@mui/icons-material/Search';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import CategoryIcon from '@mui/icons-material/Category';
-import LandslideIcon from '@mui/icons-material/Landslide';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Image from "next/image";
+import SearchIcon from "@mui/icons-material/Search";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import CategoryIcon from "@mui/icons-material/Category";
+import LandslideIcon from "@mui/icons-material/Landslide";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import HomeIcon from "@mui/icons-material/Home";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 export default function Home() {
   return (
@@ -15,12 +20,64 @@ export default function Home() {
 }
 
 function SideBar() {
-  return <div className="h-screen w-[260px]">This is a sidebar</div>;
+  return (
+    <div className="h-screen w-[296px] p-6 pt-9">
+      <Logo />
+      <Links />
+      <LogOutButton />
+    </div>
+  );
+  function Logo() {
+    return (
+      <div className="flex gap-2 items-center">
+        <div className={`bg-sky-500 p-[6px] rounded-md`}>
+          <LandslideIcon sx={{ fontSize: 27, color: "white" }} />
+        </div>
+        <div className="flex gap-1 text-[21px] ">
+          <span className={`font-bold text-sky-500`}>React</span>
+          <span className="text-slate-600">Shelf</span>
+        </div>
+      </div>
+    );
+  }
+
+  function Links() {
+    return (
+      <div className="mt-44 ml-3 flex flex-col gap-2 text-[15px]">
+        {/* Home Link */}
+        <div className="p-[7px] rounded-lg flex items-center gap-2 w-[80%] bg-sky-500 text-white">
+          <HomeIcon />
+          <span className="mt-0.5">Home</span>
+        </div>
+
+        {/* Categories Link */}
+        <div className="p-[7px] rounded-lg flex items-center gap-2 w-[80%]  text-slate-400">
+          <CategoryIcon />
+          <span className="mt-0.5">Categories</span>
+        </div>
+
+        {/* Favorite Link */}
+        <div className="p-[7px] rounded-lg flex items-center gap-2 w-[80%] text-slate-400">
+          <FavoriteIcon />
+          <span className="mt-0.5">Favorites</span>
+        </div>
+      </div>
+    );
+  }
+
+  function LogOutButton() {
+    return (
+      <div className="p-[7px] ml-3 mt-14 text-[15px] rounded-lg flex items-center gap-2 w-[80%] text-slate-400">
+        <LogoutIcon />
+        <span className="mt-0.5">Log Out</span>
+      </div>
+    );
+  }
 }
 
 function ContentArea() {
   return (
-    <div className=" w-full bg-slate-100 border p-3">
+    <div className=" w-full bg-slate-100  p-3 pt-5 px-4">
       <TopBar />
       <StatsBar />
       <AllCategories />
@@ -81,18 +138,21 @@ function ContentArea() {
 
   function StatsBar() {
     return (
-      <div className="grid grid-cols-3 gap-4   mt-4   rounded-lg">
-        <CategoriesCard />
-        <CategoriesCard />
-        <CategoriesCard />
+      <div className="mt-4">
+        <span className="text-lg font-bold">Overview</span>
+        <div className="grid grid-cols-3 gap-4 rounded-lg mt-2">
+          <CategoriesCard />
+          <CategoriesCard />
+          <CategoriesCard />
+        </div>
       </div>
     );
 
     function CategoriesCard() {
       return (
         <div className="flex gap-4 items-center p-3    bg-white rounded-lg">
-          <div className="w-[45px] h-[45px] bg-pink-100 rounded-full flex items-center justify-center">
-            <CategoryIcon className="text-pink-400" />
+          <div className="w-[45px] h-[45px] bg-sky-100 rounded-full flex items-center justify-center">
+            <CategoryIcon className="text-sky-400" />
           </div>
           <div className="flex flex-col">
             <span className="font-bold text-xl">12</span>
@@ -107,15 +167,15 @@ function ContentArea() {
 
   function AllCategories() {
     return (
-      <div className=" bg-white  w-full p-8 rounded-lg mt-4 border">
+      <div className=" bg-white  w-full p-8 rounded-lg mt-4">
         <span className="text-lg flex gap-2 justify-between items-center">
           <div className="flex gap-4 items-center">
             <span className="font-bold text-lg">All Categories</span>
-            <span className="text-[14px] text-pink-600 cursor-pointer">
+            <span className="text-[14px] text-sky-600 cursor-pointer">
               More
             </span>
           </div>
-          <button className="bg-pink-500 text-white text-[12px] px-2 py-[2px] rounded-md">
+          <button className="bg-sky-500 text-white text-[12px] px-2 py-[2px] rounded-md">
             + New Category
           </button>
         </span>
@@ -132,9 +192,9 @@ function ContentArea() {
 
     function SingleCategory() {
       return (
-        <div className="w-[200px] border border-pink-100 rounded-md p-5 flex gap-2 justify-center flex-col items-center    ">
-          <div className="w-[70px] h-[70px] bg-pink-100 rounded-full flex items-center justify-center">
-            <LandslideIcon className="text-[30px] text-pink-400" />
+        <div className="w-[200px] border rounded-md p-5 flex gap-2 justify-center flex-col items-center    ">
+          <div className="w-[70px] h-[70px] bg-sky-100 rounded-full flex items-center justify-center">
+            <LandslideIcon className="text-[30px] text-sky-400" />
           </div>
 
           <div className="flex flex-col items-center justify-center">
@@ -150,20 +210,48 @@ function ContentArea() {
 
   function FavoriteComponents() {
     return (
-      <div className="bg-white  w-full p-8 rounded-lg mt-4 border">
+      <div className="bg-white  w-full p-8 rounded-lg mt-4 ">
         <div className="flex justify-between">
           <span className="font-bold text-lg">Favorite Components</span>
-          <button className="bg-pink-500 text-white text-[12px] p-2 px-3 rounded-md">
+          <button className="bg-sky-500 text-white text-[12px] p-2 px-3 rounded-md">
             View All
           </button>
         </div>
 
         {/* Headers */}
-        <div className="grid grid-cols-4 mt-6 text-sm items-center text-slate-400">
-          <span className="border text-center">Component Name</span>
-          <span className="text-center">Created At</span>
-          <span className="text-center">Category</span>
-          <span className="text-center">Actions</span>
+        <div className="grid grid-cols-4 mt-6 mb-4 text-sm items-center text-slate-400 px-4">
+          <span className="">Component Name</span>
+          <span className="">Created At</span>
+          <span className="">Category</span>
+          <span className="">Actions</span>
+        </div>
+
+        {/* Components */}
+        <div className="px-4 flex flex-col gap-1 mt-1">
+          <div className="grid grid-cols-4 gap-4 text-sm items-center    rounded-lg p-2">
+            <span className="hover:text-sky-500 cursor-pointer">
+              UI Form Form
+            </span>
+            <span>10 July 2024</span>
+            <span className="justify-self-start">
+              <span className="inline-block rounded-2xl bg-sky-500 text-white text-[12px]  px-4 py-1 whitespace-nowrap">
+                Buttons
+              </span>
+            </span>
+            <div className="flex gap-2 ">
+              {/* Modify Button */}
+              <div className="bg-sky-500 rounded-full w-7 h-7 flex items-center justify-center">
+                <EditIcon fontSize="small" className="text-white text-[16px]" />
+              </div>
+
+              <div className="bg-sky-500 rounded-full w-7 h-7 flex items-center justify-center">
+                <DeleteIcon
+                  fontSize="small"
+                  className="text-white text-[16px]"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
